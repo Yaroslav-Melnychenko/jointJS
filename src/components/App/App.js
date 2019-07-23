@@ -54,6 +54,18 @@ class App extends Component {
         link1.target(rhombus1);
         link1.addTo(this.graph);
 
+        const ellipse1 = new joint.shapes.basic.Ellipse({
+            size: { width: 70, height: 70 },
+            attrs: { text: { text: 'Left' }, circle: { fill: '#2ECC71' } }
+        });
+        ellipse1.position(150, 140);
+        ellipse1.addTo(this.graph);
+
+        const link2 = new joint.shapes.standard.Link();
+        link2.source(rhombus1);
+        link2.target(ellipse1);
+        link2.addTo(this.graph);
+
         return (
         <div id="playground" ref="placeholder" />
         );
