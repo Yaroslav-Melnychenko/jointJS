@@ -1,0 +1,53 @@
+export const joint = require('jointjs');
+export const graph = new joint.dia.Graph();
+
+export const createRectangle = (position, size, fillColor, textColor, text, fontSize) => {
+    const rectangle = new joint.shapes.standard.Rectangle();
+    rectangle.position(...position);
+    rectangle.resize(...size);
+    rectangle.attr({
+        body: {
+            fill: fillColor
+        },
+        label: {
+            text: text,
+            fontSize,
+            fill: textColor
+        }
+    })
+    rectangle.addTo(graph);
+    return rectangle;
+}
+
+export const createRhombus = (size, fillColor, text, fontColor) => {
+    const rhombus = new joint.shapes.basic.Path({
+        size,
+        attrs: {
+            path: { d: 'M 30 0 L 60 30 30 60 0 30 z', fill: fillColor },
+            text: { text, 'ref-y': -50, fill: fontColor }
+        }
+     });
+     rhombus.position(315, 140)
+     rhombus.addTo(graph);
+     return rhombus;
+}
+
+export const createLink = (source, target, vertices) => {
+    const link = new joint.shapes.standard.Link();
+    link.source(source);
+    link.target(target);
+    if (vertices) {
+        link.vertices(vertices);
+    }
+    link.addTo(graph);
+}
+
+export const createEllipse = (size, attrs, position) => {
+    const ellipse = new joint.shapes.basic.Ellipse({
+        size,
+        attrs
+    });
+    ellipse.position(...position);
+    ellipse.addTo(graph);
+    return ellipse;
+}
