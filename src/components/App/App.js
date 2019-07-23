@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import FixedGraph from '../FixedGraph';
+import EditableGraph from '../EditableGraph';
 import './App.css';
 
 
@@ -17,7 +18,7 @@ class App extends Component {
                     <FixedGraph />
                 </TabPane>
                 <TabPane tab="Editable graph" key="2">
-                    Editable graph
+                    <EditableGraph />
                 </TabPane>
             </Tabs>
         );

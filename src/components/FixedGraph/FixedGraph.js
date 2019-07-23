@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { createRectangle, createRhombus, createLink, createEllipse, graph, joint } from '../../utils/createNewShapes';
+import { createRectangle, createRhombus, createLink, createEllipse } from '../../utils/createNewShapes';
+
+const joint = require('jointjs');
+const graph = new joint.dia.Graph();
 
 class FixedGraph extends Component {
 
@@ -23,39 +26,39 @@ class FixedGraph extends Component {
 
     render() {
 
-        const rect1 = createRectangle([300, 50], [100, 50], '#1890ff', '#fff', 'Main', '16px');
-        const rhombus1 = createRhombus({ width: 70, height: 70 }, '#1890ff', 'Go', 'white');
+        const rect1 = createRectangle(joint, graph, [300, 50], [100, 50], '#1890ff', '#fff', 'Main', '16px');
+        const rhombus1 = createRhombus(joint, graph, { width: 70, height: 70 }, '#1890ff', 'Go', 'white');
 
-        createLink(rect1, rhombus1);
+        createLink(joint, graph, rect1, rhombus1);
 
-        const ellipse1 = createEllipse({ width: 70, height: 70 }, { text: { text: 'Left' }, circle: { fill: '#2ECC71' } }, [150, 140]);
+        const ellipse1 = createEllipse(joint, graph, { width: 70, height: 70 }, { text: { text: 'Left' }, circle: { fill: '#2ECC71' } }, [150, 140]);
 
-        createLink(rhombus1, ellipse1);
+        createLink(joint, graph, rhombus1, ellipse1);
 
-        const rect2 = createRectangle([500, 150], [100, 50], '#fefefe', '#000', 'Right', '16px');
+        const rect2 = createRectangle(joint, graph, [500, 150], [100, 50], '#fefefe', '#000', 'Right', '16px');
 
-        createLink(rhombus1, rect2);
+        createLink(joint, graph, rhombus1, rect2);
 
-        const rect3 = createRectangle([380, 250], [100, 50], '#f3ba4e', '#000', 'Option 1', '16px');
-        const rect4 = createRectangle([500, 250], [100, 50], '#f3ba4e', '#000', 'Option 2', '16px');
-        const rect5 = createRectangle([620, 250], [100, 50], '#f3ba4e', '#000', 'Option 3', '16px');
+        const rect3 = createRectangle(joint, graph, [380, 250], [100, 50], '#f3ba4e', '#000', 'Option 1', '16px');
+        const rect4 = createRectangle(joint, graph, [500, 250], [100, 50], '#f3ba4e', '#000', 'Option 2', '16px');
+        const rect5 = createRectangle(joint, graph, [620, 250], [100, 50], '#f3ba4e', '#000', 'Option 3', '16px');
 
-        createLink(rect2, rect3);
-        createLink(rect2, rect4);
-        createLink(rect2, rect5);
+        createLink(joint, graph, rect2, rect3);
+        createLink(joint, graph, rect2, rect4);
+        createLink(joint, graph, rect2, rect5);
 
-        const rect6 = createRectangle([500, 330], [100, 30], '#4b5fde', '#fff', 'Step 1', '16px');
-        const rect7 = createRectangle([500, 370], [100, 30], '#4b5fde', '#fff', 'Step 2', '16px');
+        const rect6 = createRectangle(joint, graph, [500, 330], [100, 30], '#4b5fde', '#fff', 'Step 1', '16px');
+        const rect7 = createRectangle(joint, graph, [500, 370], [100, 30], '#4b5fde', '#fff', 'Step 2', '16px');
 
-        createLink(rect3, rect6, [{x: 430, y: 345}]);
-        createLink(rect3, rect7, [{x: 430, y: 385}]);
-        createLink(rect3, rect7, [{x: 430, y: 385}]);
+        createLink(joint, graph, rect3, rect6, [{x: 430, y: 345}]);
+        createLink(joint, graph, rect3, rect7, [{x: 430, y: 385}]);
+        createLink(joint, graph, rect3, rect7, [{x: 430, y: 385}]);
 
-        const rect8 = createRectangle([280, 350], [100, 30], '#4b5fde', '#fff', 'Do this', '16px');
-        const rect9 = createRectangle([280, 390], [100, 30], '#4b5fde', '#fff', 'Or this', '16px');
+        const rect8 = createRectangle(joint, graph, [280, 350], [100, 30], '#4b5fde', '#fff', 'Do this', '16px');
+        const rect9 = createRectangle(joint, graph, [280, 390], [100, 30], '#4b5fde', '#fff', 'Or this', '16px');
 
-        createLink(rect3, rect8, [{x: 430, y: 365}]);
-        createLink(rect3, rect9, [{x: 430, y: 405}]);
+        createLink(joint, graph, rect3, rect8, [{x: 430, y: 365}]);
+        createLink(joint, graph, rect3, rect9, [{x: 430, y: 405}]);
 
         return <div id="playground" ref="placeholder" />;
     }
