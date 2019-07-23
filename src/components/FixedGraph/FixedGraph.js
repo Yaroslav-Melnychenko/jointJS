@@ -17,218 +17,99 @@ class FixedGraph extends Component {
             background: {
                 color: '#f3f3f3'
             },
-            model: this.graph
+            model: this.graph,
+            interactive: () => {
+                return false;
+            }
         });
+    }
+
+    createRectangle = (position, size, fillColor, textColor, text, fontSize) => {
+        const rectangle = new joint.shapes.standard.Rectangle();
+        rectangle.position(...position);
+        rectangle.resize(...size);
+        rectangle.attr({
+            body: {
+                fill: fillColor
+            },
+            label: {
+                text: text,
+                fontSize,
+                fill: textColor
+            }
+        })
+        rectangle.addTo(this.graph);
+        return rectangle;
+    }
+
+    createRhombus = (size, fillColor, text, fontColor) => {
+        const rhombus = new joint.shapes.basic.Path({
+            size,
+            attrs: {
+                path: { d: 'M 30 0 L 60 30 30 60 0 30 z', fill: fillColor },
+                text: { text, 'ref-y': -50, fill: fontColor }
+            }
+         });
+         rhombus.position(315, 140)
+         rhombus.addTo(this.graph);
+         return rhombus;
+    }
+
+    createLink = (source, target, vertices) => {
+        const link = new joint.shapes.standard.Link();
+        link.source(source);
+        link.target(target);
+        if (vertices) {
+            link.vertices(vertices);
+        }
+        link.addTo(this.graph);
+    }
+
+    createEllipse = (size, attrs, position) => {
+        const ellipse = new joint.shapes.basic.Ellipse({
+            size,
+            attrs
+        });
+        ellipse.position(...position);
+        ellipse.addTo(this.graph);
+        return ellipse;
     }
 
     render() {
 
-        const rect1 = new joint.shapes.standard.Rectangle();
-        rect1.position(300, 50);
-        rect1.resize(100, 50);
-        rect1.attr({
-            body: {
-                fill: '#1890ff'
-            },
-            label: {
-                text: 'Main',
-                fontSize: '16px',
-                fill: '#fff'
-            }
-        })
-        rect1.addTo(this.graph);
+        const rect1 = this.createRectangle([300, 50], [100, 50], '#1890ff', '#fff', 'Main', '16px');
+        const rhombus1 = this.createRhombus({ width: 70, height: 70 }, '#1890ff', 'Go', 'white');
 
-        const rhombus1 = new joint.shapes.basic.Path({
-            size: { width: 70, height: 70 },
-            attrs: {
-                path: { d: 'M 30 0 L 60 30 30 60 0 30 z', fill: '#1890ff' },
-                text: { text: 'Go', 'ref-y': -50, fill: 'white' }
-            }
-         });
-         rhombus1.position(315, 140)
-         rhombus1.addTo(this.graph);
+        this.createLink(rect1, rhombus1);
 
-        const link1 = new joint.shapes.standard.Link();
-        link1.source(rect1);
-        link1.target(rhombus1);
-        link1.addTo(this.graph);
+        const ellipse1 = this.createEllipse({ width: 70, height: 70 }, { text: { text: 'Left' }, circle: { fill: '#2ECC71' } }, [150, 140]);
 
-        const ellipse1 = new joint.shapes.basic.Ellipse({
-            size: { width: 70, height: 70 },
-            attrs: { text: { text: 'Left' }, circle: { fill: '#2ECC71' } }
-        });
-        ellipse1.position(150, 140);
-        ellipse1.addTo(this.graph);
+        this.createLink(rhombus1, ellipse1);
 
-        const link2 = new joint.shapes.standard.Link();
-        link2.source(rhombus1);
-        link2.target(ellipse1);
-        link2.addTo(this.graph);
+        const rect2 = this.createRectangle([500, 150], [100, 50], '#fefefe', '#000', 'Right', '16px');
 
-        const rect2 = new joint.shapes.standard.Rectangle();
-        rect2.position(500, 150);
-        rect2.resize(100, 50);
-        rect2.attr({
-            body: {
-                fill: '#fefefe'
-            },
-            label: {
-                text: 'Right',
-                fontSize: '16px',
-                fill: '#000'
-            }
-        })
-        rect2.addTo(this.graph);
+        this.createLink(rhombus1, rect2);
 
-        const link4 = new joint.shapes.standard.Link();
-        link4.source(rhombus1);
-        link4.target(rect2);
-        link4.addTo(this.graph);
+        const rect3 = this.createRectangle([380, 250], [100, 50], '#f3ba4e', '#000', 'Option 1', '16px');
+        const rect4 = this.createRectangle([500, 250], [100, 50], '#f3ba4e', '#000', 'Option 2', '16px');
+        const rect5 = this.createRectangle([620, 250], [100, 50], '#f3ba4e', '#000', 'Option 3', '16px');
 
-        const rect3 = new joint.shapes.standard.Rectangle();
-        rect3.position(380, 250);
-        rect3.resize(100, 50);
-        rect3.attr({
-            body: {
-                fill: '#f3ba4e'
-            },
-            label: {
-                text: 'Option 1',
-                fontSize: '16px',
-                fill: '#000'
-            }
-        })
-        rect3.addTo(this.graph);
+        this.createLink(rect2, rect3);
+        this.createLink(rect2, rect4);
+        this.createLink(rect2, rect5);
 
-        const rect4 = new joint.shapes.standard.Rectangle();
-        rect4.position(500, 250);
-        rect4.resize(100, 50);
-        rect4.attr({
-            body: {
-                fill: '#f3ba4e'
-            },
-            label: {
-                text: 'Option 2',
-                fontSize: '16px',
-                fill: '#000'
-            }
-        })
-        rect4.addTo(this.graph);
+        const rect6 = this.createRectangle([500, 330], [100, 30], '#4b5fde', '#fff', 'Step 1', '16px');
+        const rect7 = this.createRectangle([500, 370], [100, 30], '#4b5fde', '#fff', 'Step 2', '16px');
 
-        const rect5 = new joint.shapes.standard.Rectangle();
-        rect5.position(620, 250);
-        rect5.resize(100, 50);
-        rect5.attr({
-            body: {
-                fill: '#f3ba4e'
-            },
-            label: {
-                text: 'Option 3',
-                fontSize: '16px',
-                fill: '#000'
-            }
-        })
-        rect5.addTo(this.graph);
+        this.createLink(rect3, rect6, [{x: 430, y: 345}]);
+        this.createLink(rect3, rect7, [{x: 430, y: 385}]);
+        this.createLink(rect3, rect7, [{x: 430, y: 385}]);
 
-        const link5 = new joint.shapes.standard.Link();
-        link5.source(rect2);
-        link5.target(rect3);
-        link5.addTo(this.graph);
+        const rect8 = this.createRectangle([280, 350], [100, 30], '#4b5fde', '#fff', 'Do this', '16px');
+        const rect9 = this.createRectangle([280, 390], [100, 30], '#4b5fde', '#fff', 'Or this', '16px');
 
-        const link6 = new joint.shapes.standard.Link();
-        link6.source(rect2);
-        link6.target(rect4);
-        link6.addTo(this.graph);
-
-        const link7 = new joint.shapes.standard.Link();
-        link7.source(rect2);
-        link7.target(rect5);
-        link7.addTo(this.graph);
-
-        const rect6 = new joint.shapes.standard.Rectangle();
-        rect6.position(500, 330);
-        rect6.resize(100, 30);
-        rect6.attr({
-            body: {
-                fill: '#4b5fde'
-            },
-            label: {
-                text: 'Step 1',
-                fontSize: '16px',
-                fill: '#fff'
-            }
-        })
-        rect6.addTo(this.graph);
-
-        const rect7 = new joint.shapes.standard.Rectangle();
-        rect7.position(500, 370);
-        rect7.resize(100, 30);
-        rect7.attr({
-            body: {
-                fill: '#4b5fde'
-            },
-            label: {
-                text: 'Step 2',
-                fontSize: '16px',
-                fill: '#fff'
-            }
-        })
-        rect7.addTo(this.graph);
-
-        const link8 = new joint.shapes.standard.Link();
-        link8.source(rect3);
-        link8.target(rect6);
-        link8.vertices([{x: 430, y: 345}])
-        link8.addTo(this.graph);
-
-        const link9 = new joint.shapes.standard.Link();
-        link9.source(rect3);
-        link9.target(rect7);
-        link9.vertices([{x: 430, y: 385}])
-        link9.addTo(this.graph);
-
-        const rect8 = new joint.shapes.standard.Rectangle();
-        rect8.position(280, 350);
-        rect8.resize(100, 30);
-        rect8.attr({
-            body: {
-                fill: '#4b5fde'
-            },
-            label: {
-                text: 'Do this',
-                fontSize: '16px',
-                fill: '#fff'
-            }
-        })
-        rect8.addTo(this.graph);
-
-        const rect9 = new joint.shapes.standard.Rectangle();
-        rect9.position(280, 390);
-        rect9.resize(100, 30);
-        rect9.attr({
-            body: {
-                fill: '#4b5fde'
-            },
-            label: {
-                text: 'Or this',
-                fontSize: '16px',
-                fill: '#fff'
-            }
-        })
-        rect9.addTo(this.graph);
-
-        const link10 = new joint.shapes.standard.Link();
-        link10.source(rect3);
-        link10.target(rect8);
-        link10.vertices([{x: 430, y: 365}])
-        link10.addTo(this.graph);
-
-        const link11 = new joint.shapes.standard.Link();
-        link11.source(rect3);
-        link11.target(rect9);
-        link11.vertices([{x: 430, y: 405}])
-        link11.addTo(this.graph);
-
+        this.createLink(rect3, rect8, [{x: 430, y: 365}]);
+        this.createLink(rect3, rect9, [{x: 430, y: 405}]);
 
         return <div id="playground" ref="placeholder" />;
     }
