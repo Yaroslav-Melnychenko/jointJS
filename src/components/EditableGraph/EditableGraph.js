@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { createRectangle, createRhombus } from '../../utils/createNewShapes';
+// import { createRectangle, createRhombus, createLink } from '../../utils/createNewShapes';
+import { API_URL } from '../../api/constants';
 
 const joint = require('jointjs');
-const graph = new joint.dia.Graph();
+const namespace = joint.shapes;
+const graph = new joint.dia.Graph({}, { cellNamespace: namespace });
+
 
 class EditableGraph extends Component {
+
+    state = {}
 
     componentDidMount() {
         this.paper = new joint.dia.Paper({
@@ -21,21 +26,24 @@ class EditableGraph extends Component {
             model: graph,
             interactive: () => {
                 return false;
-            }
+            },
+            cellViewNamespace: namespace
         });
-        axios.get('http://localhost:4000/graph-1').then((responce) => {
+        axios.get(`${API_URL}/graph-2`).then((responce) => {
             const { data } = responce;
-            data.forEach(shape => {
-                if (shape.type === 'rectangle') {
-                    createRectangle(joint, graph, shape.position, shape.size, shape.fillColor, shape.textColor, shape.text, shape.fontSize);
-                } else if (shape.type === 'rhombus') {
-                    createRhombus(joint, graph, shape.position, shape.size, shape.fillColor, shape.text, shape.textColor);
-                }
-            })
+            this.setState({ ...data });
         });
     }
 
     render() {
+
+        const { cells } = this.state;
+
+        if (cells) {
+            graph.set('graphCustomProperty', true);
+            graph.fromJSON(this.state);
+        }
+
         return (
             <div id="editableGraph" ref="editableGraph" />
         );
