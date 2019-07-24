@@ -1,0 +1,26 @@
+{
+    "graph-1": [
+        { 
+            "id": 1, 
+            "type": "rectangle", 
+            "position": [300, 50],
+            "size": [100, 50],
+            "fillColor": "#1890ff",
+            "textColor": "#fff",
+            "text": "Main",
+            "fontSize": "16px"
+        },
+        { 
+            "id": 2, 
+            "type": "rhombus", 
+            "position": [315, 140],
+            "size": {
+                "width": 70,
+                "height": 70
+            },
+            "fillColor": "#1890ff",
+            "text": "Go",
+            "textColor": "#fff"
+        }
+    ]
+}

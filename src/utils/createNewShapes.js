@@ -16,7 +16,8 @@ export const createRectangle = (joint, graph, position, size, fillColor, textCol
     return rectangle;
 }
 
-export const createRhombus = (joint, graph, size, fillColor, text, fontColor) => {
+export const createRhombus = (joint, graph, position, size, fillColor, text, fontColor) => {
+    // console.log('size', size)
     const rhombus = new joint.shapes.basic.Path({
         size,
         attrs: {
@@ -24,7 +25,7 @@ export const createRhombus = (joint, graph, size, fillColor, text, fontColor) =>
             text: { text, 'ref-y': -50, fill: fontColor }
         }
      });
-     rhombus.position(315, 140)
+     rhombus.position(...position)
      rhombus.addTo(graph);
      return rhombus;
 }

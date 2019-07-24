@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// import { createRectangle } from '../../utils/createNewShapes';
+import axios from 'axios';
+import { createRectangle, createRhombus } from '../../utils/createNewShapes';
 
 const joint = require('jointjs');
 const graph = new joint.dia.Graph();
@@ -22,10 +23,19 @@ class EditableGraph extends Component {
                 return false;
             }
         });
+        axios.get('http://localhost:4000/graph-1').then((responce) => {
+            const { data } = responce;
+            data.forEach(shape => {
+                if (shape.type === 'rectangle') {
+                    createRectangle(joint, graph, shape.position, shape.size, shape.fillColor, shape.textColor, shape.text, shape.fontSize);
+                } else if (shape.type === 'rhombus') {
+                    createRhombus(joint, graph, shape.position, shape.size, shape.fillColor, shape.text, shape.textColor);
+                }
+            })
+        });
     }
 
     render() {
-        // const rect1 = createRectangle(joint, graph, [300, 50], [100, 50], '#1890ff', '#fff', 'Main', '16px');
         return (
             <div id="editableGraph" ref="editableGraph" />
         );

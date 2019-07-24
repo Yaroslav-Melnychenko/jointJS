@@ -27,7 +27,7 @@ class FixedGraph extends Component {
     render() {
 
         const rect1 = createRectangle(joint, graph, [300, 50], [100, 50], '#1890ff', '#fff', 'Main', '16px');
-        const rhombus1 = createRhombus(joint, graph, { width: 70, height: 70 }, '#1890ff', 'Go', 'white');
+        const rhombus1 = createRhombus(joint, graph, [315, 140], { width: 70, height: 70 }, '#1890ff', 'Go', 'white');
 
         createLink(joint, graph, rect1, rhombus1);
 
