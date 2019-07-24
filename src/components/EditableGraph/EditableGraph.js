@@ -34,7 +34,9 @@ class EditableGraph extends Component {
 
     saveGraph = () => {
         const jsonObject = graph.toJSON();
-        console.log('jsonObject', jsonObject)
+        axios.post(`${API_URL}/graph-1`, { ...jsonObject }).then(response => {
+            console.log(response);
+        })
     }
 
     render() {
