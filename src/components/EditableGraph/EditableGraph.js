@@ -13,8 +13,7 @@ const graph = new joint.dia.Graph({}, { cellNamespace: namespace });
 class EditableGraph extends Component {
 
     state = {
-        isLoadingGraph: false,
-        isLoadingSave: false
+        isLoading: false,
     }
 
     componentDidMount() {
@@ -29,23 +28,25 @@ class EditableGraph extends Component {
             },
             model: graph,
         });
-        this.setState({ isLoadingGraph: true });
+        this.setState({ isLoading: true });
         axios.get(`${API_URL}/graph-1`).then((responce) => {
             const { data } = responce;
-            this.setState({ ...data, isLoadingGraph: false });
+            this.setState({ ...data, isLoading: false });
         });
     }
 
     saveGraph = () => {
+        this.setState({ isLoading: true });
         const jsonObject = graph.toJSON();
-        axios.post(`${API_URL}/graph-1`, { ...jsonObject }).then(response => {
-            console.log(response);
+        axios.post(`${API_URL}/graph-1`, { ...jsonObject }).then(responce => {
+            const { data } = responce;
+            this.setState({ ...data, isLoading: false });
         })
     }
 
     render() {
 
-        const { cells, isLoadingGraph } = this.state;
+        const { cells, isLoading } = this.state;
 
         if (cells) {
             graph.set('graphCustomProperty', true);
@@ -56,12 +57,13 @@ class EditableGraph extends Component {
 
         return (
             <div className="editable-container">
-                { isLoadingGraph ? <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} className="loader" /> : null }
-                <div id="editableGraph" ref="editableGraph" />
+                { isLoading ? <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} className="loader" /> : null }
+                <div id="editableGraph" ref="editableGraph" className={`loading-graph-${isLoading}`} />
                 <Button 
                     onClick={this.saveGraph} 
                     type="primary"
                     className="save-btn"
+                    disabled={isLoading}
                 >
                     Save
                 </Button>
