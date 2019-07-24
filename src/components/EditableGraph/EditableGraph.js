@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-// import { createRectangle, createRhombus, createLink } from '../../utils/createNewShapes';
+import { Button } from 'antd';
 import { API_URL } from '../../api/constants';
+import './EditableGraph.css';
 
 const joint = require('jointjs');
 const namespace = joint.shapes;
@@ -24,15 +25,16 @@ class EditableGraph extends Component {
                 color: '#f3f3f3'
             },
             model: graph,
-            interactive: () => {
-                return false;
-            },
-            cellViewNamespace: namespace
         });
-        axios.get(`${API_URL}/graph-2`).then((responce) => {
+        axios.get(`${API_URL}/graph-1`).then((responce) => {
             const { data } = responce;
             this.setState({ ...data });
         });
+    }
+
+    saveGraph = () => {
+        const jsonObject = graph.toJSON();
+        console.log('jsonObject', jsonObject)
     }
 
     render() {
@@ -45,7 +47,16 @@ class EditableGraph extends Component {
         }
 
         return (
-            <div id="editableGraph" ref="editableGraph" />
+            <div className="editable-container">
+                <div id="editableGraph" ref="editableGraph" />
+                <Button 
+                    onClick={this.saveGraph} 
+                    type="primary"
+                    className="save-btn"
+                >
+                    Save
+                </Button>
+            </div>
         );
     }
 }
