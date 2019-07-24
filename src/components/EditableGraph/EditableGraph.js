@@ -53,8 +53,6 @@ class EditableGraph extends Component {
             graph.fromJSON({ cells });
         }
 
-        console.log(this.state);
-
         return (
             <div className="editable-container">
                 { isLoading ? <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} className="loader" /> : null }

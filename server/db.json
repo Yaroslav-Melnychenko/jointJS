@@ -4,8 +4,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 90,
-          "y": 50
+          "x": 340,
+          "y": 40
         },
         "size": {
           "width": 100,
@@ -32,8 +32,8 @@
           "height": 70
         },
         "position": {
-          "x": 200,
-          "y": 290
+          "x": 350,
+          "y": 140
         },
         "angle": 0,
         "id": "2c77bbce-d8a3-4048-bbfe-d58d58b96a89",
@@ -69,8 +69,8 @@
           "height": 70
         },
         "position": {
-          "x": 410,
-          "y": 330
+          "x": 230,
+          "y": 140
         },
         "angle": 0,
         "id": "a1da90b0-9939-4268-9009-1f6ad1aaa5a9",
@@ -87,8 +87,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 600,
-          "y": 60
+          "x": 520,
+          "y": 150
         },
         "size": {
           "width": 100,
@@ -111,8 +111,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 330,
-          "y": 150
+          "x": 380,
+          "y": 260
         },
         "size": {
           "width": 100,
