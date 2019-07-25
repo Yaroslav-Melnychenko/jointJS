@@ -22,7 +22,7 @@ class EditableGraph extends Component {
             el: ReactDOM.findDOMNode(this.refs.editableGraph),
             width: 800,
             height: 500,
-            gridSize: 10,
+            gridSize: 20,
             drawGrid: true,
             background: {
                 color: '#f3f3f3'
@@ -44,6 +44,13 @@ class EditableGraph extends Component {
             const { data } = responce;
             this.setState({ ...data, isLoading: false });
         })
+    }
+
+    saveSVG = () => {
+        const svgDoc = this.paper.svg;
+        // var serializer = new XMLSerializer();
+        // var svgString = serializer.serializeToString(svgDoc);
+        console.log('svgDoc', svgDoc);
     }
 
     render() {
@@ -74,14 +81,24 @@ class EditableGraph extends Component {
                         <div className="rhombus" />
                     </li>
                 </div>
-                <Button 
-                    onClick={this.saveGraph} 
-                    type="primary"
-                    className="save-btn"
-                    disabled={isLoading}
-                >
-                    Save
-                </Button>
+                <div className="btn-container">
+                    <Button 
+                        onClick={this.saveGraph} 
+                        type="primary"
+                        className="save-btn"
+                        disabled={isLoading}
+                    >
+                        Save
+                    </Button>
+                    <Button
+                        onClick={this.saveSVG}
+                        type="danger"
+                        className="save-btn"
+                        disabled={isLoading}
+                    >
+                        Save SVG
+                    </Button>
+                </div>
             </div>
         );
     }

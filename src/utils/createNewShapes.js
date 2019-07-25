@@ -89,5 +89,9 @@ export const configurePaperForLinks = (joint, paper) => {
             const toolsView = new joint.dia.ToolsView();
             linkView.addTools(toolsView);
         });
+
+        paper.on('element:mouseenter', function(element) {
+            console.log('element', element)
+        })
     }
 }
