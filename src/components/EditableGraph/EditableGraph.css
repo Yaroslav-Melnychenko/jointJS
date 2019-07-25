@@ -6,7 +6,7 @@
 .save-btn {
     display: block;
     width: 100px;
-    margin: 0 auto;
+    margin: 25px auto;
 }
 
 .loader {
@@ -29,4 +29,34 @@
     height: 100%;
     background: #f3f3f3;
     z-index: 5;
+}
+
+.graph-panel {
+    max-width: 800px;
+    margin: 0 auto;
+    border: solid 1px #bbb;
+    border-top: none;
+    padding: 15px 20px;
+}
+
+.graph-panel li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.rectangle {
+    width: 35px;
+    height: 35px;
+    background-color: #1890ff;
+    border: solid 1px #333;
+    cursor: pointer;
+}
+
+.circle {
+    width: 35px;
+    height: 35px;
+    background-color: #1890ff;
+    border: solid 1px #333;
+    border-radius: 50%;
+    cursor: pointer;
 }

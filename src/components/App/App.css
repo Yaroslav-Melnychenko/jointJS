@@ -1,5 +1,6 @@
 #playground, #editableGraph {
     max-width: 800px;
     margin: 35px auto;
+    margin-bottom: 0;
     border: solid 1px #bbb;
 }

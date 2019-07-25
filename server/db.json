@@ -4,8 +4,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 340,
-          "y": 40
+          "x": 320,
+          "y": 30
         },
         "size": {
           "width": 100,
@@ -32,8 +32,8 @@
           "height": 70
         },
         "position": {
-          "x": 350,
-          "y": 140
+          "x": 340,
+          "y": 170
         },
         "angle": 0,
         "id": "2c77bbce-d8a3-4048-bbfe-d58d58b96a89",
@@ -63,14 +63,29 @@
         "attrs": {}
       },
       {
+        "type": "standard.Link",
+        "source": {
+          "x": 430,
+          "y": 90
+        },
+        "target": {
+          "x": 710,
+          "y": 160
+        },
+        "id": "0c23f7cd-8ea7-41be-935e-93d3357b50dc",
+        "vertices": [],
+        "z": 3,
+        "attrs": {}
+      },
+      {
         "type": "basic.Ellipse",
         "size": {
           "width": 70,
           "height": 70
         },
         "position": {
-          "x": 230,
-          "y": 140
+          "x": 90,
+          "y": 170
         },
         "angle": 0,
         "id": "a1da90b0-9939-4268-9009-1f6ad1aaa5a9",
@@ -87,8 +102,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 520,
-          "y": 150
+          "x": 650,
+          "y": 170
         },
         "size": {
           "width": 100,
@@ -111,8 +126,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 380,
-          "y": 260
+          "x": 210,
+          "y": 180
         },
         "size": {
           "width": 100,
@@ -132,7 +147,6 @@
           }
         }
       }
-    ],
-    "graphCustomProperty": true
+    ]
   }
 }
