@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Button, Spin, Icon } from 'antd';
+import * as svg from 'save-svg-as-png';
 import { API_URL } from '../../api/constants';
 import { createRectangle, createEllipse, createLink, configurePaperForLinks, createRhombus } from '../../utils/createNewShapes';
 import './EditableGraph.css';
@@ -48,9 +49,7 @@ class EditableGraph extends Component {
 
     saveSVG = () => {
         const svgDoc = this.paper.svg;
-        // var serializer = new XMLSerializer();
-        // var svgString = serializer.serializeToString(svgDoc);
-        console.log('svgDoc', svgDoc);
+        svg.saveSvgAsPng(svgDoc, "diagram.png");
     }
 
     render() {
@@ -96,7 +95,7 @@ class EditableGraph extends Component {
                         className="save-btn"
                         disabled={isLoading}
                     >
-                        Save SVG
+                        Save image <Icon type="file-image" />
                     </Button>
                 </div>
             </div>
