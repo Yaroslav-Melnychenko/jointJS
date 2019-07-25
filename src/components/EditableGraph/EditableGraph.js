@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Button, Spin, Icon } from 'antd';
 import { API_URL } from '../../api/constants';
-import { createRectangle, createEllipse, createLink, configurePaperForLinks } from '../../utils/createNewShapes';
+import { createRectangle, createEllipse, createLink, configurePaperForLinks, createRhombus } from '../../utils/createNewShapes';
 import './EditableGraph.css';
 
 const joint = require('jointjs');
@@ -69,6 +69,9 @@ class EditableGraph extends Component {
                     </li>
                     <li onClick={() => createLink(joint, graph, { x: 10, y: 10 }, { x: 100, y: 100 })}>
                         <div className="link" />
+                    </li>
+                    <li onClick={() => createRhombus(joint, graph, [315, 140], { width: 70, height: 70 }, '#1890ff', 'Go', 'white')}>
+                        <div className="rhombus" />
                     </li>
                 </div>
                 <Button 

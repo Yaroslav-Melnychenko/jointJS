@@ -91,3 +91,13 @@
     top: -8px;
     left: -6px;
 }
+
+.rhombus {
+    width: 30px;
+    height: 30px;
+    background-color: #1890ff;
+    border: solid 1px #333;
+    cursor: pointer;
+    transform: rotate(45deg);
+    margin: 0 5px;
+}

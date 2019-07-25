@@ -83,13 +83,11 @@ export const configurePaperForLinks = (joint, paper) => {
 
             linkView.addTools(toolsView);
             linkView.showTools();
-            // console.log(linkView)
         });
             
-        paper.on('link:mouseover', function(linkView) {
-            console.log(linkView)
-            // linkView.addTools(toolsView);
-            // linkView.hideTools();
+        paper.on('link:mouseleave', function(linkView) {
+            const toolsView = new joint.dia.ToolsView();
+            linkView.addTools(toolsView);
         });
     }
 }
