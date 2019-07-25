@@ -91,7 +91,8 @@ export const configurePaperForLinks = (joint, paper) => {
         });
 
         paper.on('element:mouseenter', function(element) {
-            console.log('element', element)
+            // console.log('element', element)
+            // console.log(joint);
         })
     }
 }
