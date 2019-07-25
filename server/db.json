@@ -4,7 +4,7 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 320,
+          "x": 30,
           "y": 30
         },
         "size": {
@@ -32,8 +32,8 @@
           "height": 70
         },
         "position": {
-          "x": 340,
-          "y": 170
+          "x": 320,
+          "y": 100
         },
         "angle": 0,
         "id": "2c77bbce-d8a3-4048-bbfe-d58d58b96a89",
@@ -56,21 +56,7 @@
           "id": "32b80a11-e2c4-4b80-8f3b-6ff309d2204f"
         },
         "target": {
-          "id": "2c77bbce-d8a3-4048-bbfe-d58d58b96a89"
-        },
-        "id": "31d26115-9a67-4928-ada6-dca20866fb28",
-        "z": 3,
-        "attrs": {}
-      },
-      {
-        "type": "standard.Link",
-        "source": {
-          "x": 430,
-          "y": 90
-        },
-        "target": {
-          "x": 710,
-          "y": 160
+          "id": "b8f11347-32d9-44df-80a1-c2ec9f3d13e9"
         },
         "id": "0c23f7cd-8ea7-41be-935e-93d3357b50dc",
         "vertices": [],
@@ -84,8 +70,8 @@
           "height": 70
         },
         "position": {
-          "x": 90,
-          "y": 170
+          "x": 290,
+          "y": 260
         },
         "angle": 0,
         "id": "a1da90b0-9939-4268-9009-1f6ad1aaa5a9",
@@ -102,8 +88,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 650,
-          "y": 170
+          "x": 340,
+          "y": 410
         },
         "size": {
           "width": 100,
@@ -126,8 +112,8 @@
       {
         "type": "standard.Rectangle",
         "position": {
-          "x": 210,
-          "y": 180
+          "x": 50,
+          "y": 170
         },
         "size": {
           "width": 100,
@@ -144,6 +130,115 @@
             "fontSize": "16px",
             "fill": "#000",
             "text": "Option 1"
+          }
+        }
+      },
+      {
+        "type": "standard.Link",
+        "source": {
+          "id": "2c77bbce-d8a3-4048-bbfe-d58d58b96a89"
+        },
+        "target": {
+          "id": "b8f11347-32d9-44df-80a1-c2ec9f3d13e9"
+        },
+        "id": "83697f67-1f43-4dea-9009-65aceeef9c4d",
+        "z": 9,
+        "vertices": [],
+        "attrs": {}
+      },
+      {
+        "type": "standard.Rectangle",
+        "position": {
+          "x": 440,
+          "y": 210
+        },
+        "size": {
+          "width": 100,
+          "height": 30
+        },
+        "angle": 0,
+        "id": "c21232af-6bc3-4016-a835-595af7f2775b",
+        "z": 10,
+        "attrs": {
+          "body": {
+            "fill": "#4b5fde"
+          },
+          "label": {
+            "fontSize": "16px",
+            "fill": "#fff",
+            "text": ""
+          }
+        }
+      },
+      {
+        "type": "standard.Link",
+        "source": {
+          "id": "b8f11347-32d9-44df-80a1-c2ec9f3d13e9"
+        },
+        "target": {
+          "id": "c21232af-6bc3-4016-a835-595af7f2775b"
+        },
+        "id": "5c74228b-74cc-461a-b493-d1b83462d524",
+        "z": 11,
+        "attrs": {}
+      },
+      {
+        "type": "standard.Link",
+        "source": {
+          "id": "b8f11347-32d9-44df-80a1-c2ec9f3d13e9"
+        },
+        "target": {
+          "id": "a1da90b0-9939-4268-9009-1f6ad1aaa5a9"
+        },
+        "id": "391d51fd-2612-4da5-8056-7329dcdf2c90",
+        "z": 12,
+        "attrs": {}
+      },
+      {
+        "type": "standard.Link",
+        "source": {
+          "id": "b8f11347-32d9-44df-80a1-c2ec9f3d13e9"
+        },
+        "target": {
+          "id": "4c17d8e9-46e8-4fb8-a6e3-ac0aafa8575e"
+        },
+        "id": "b4e95b8a-ce27-408e-98a7-1ccfc049b15b",
+        "z": 13,
+        "attrs": {}
+      },
+      {
+        "type": "standard.Link",
+        "source": {
+          "id": "c21232af-6bc3-4016-a835-595af7f2775b"
+        },
+        "target": {
+          "id": "5ce0a555-9991-40b4-aeb8-99c5161a122b"
+        },
+        "id": "cc5b63e6-7a3f-49c3-863c-63bd02bb3071",
+        "z": 14,
+        "attrs": {}
+      },
+      {
+        "type": "standard.Rectangle",
+        "position": {
+          "x": 440,
+          "y": 350
+        },
+        "size": {
+          "width": 100,
+          "height": 30
+        },
+        "angle": 0,
+        "id": "5ce0a555-9991-40b4-aeb8-99c5161a122b",
+        "z": 15,
+        "attrs": {
+          "body": {
+            "fill": "#4b5fde"
+          },
+          "label": {
+            "fontSize": "16px",
+            "fill": "#fff",
+            "text": ""
           }
         }
       }

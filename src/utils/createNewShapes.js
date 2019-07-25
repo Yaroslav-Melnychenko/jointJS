@@ -49,3 +49,9 @@ export const createEllipse = (joint, graph, size, attrs, position) => {
     ellipse.addTo(graph);
     return ellipse;
 }
+
+// New functions for implement JSON uploading
+
+export const createCustomLink = () => {
+    // Code
+}

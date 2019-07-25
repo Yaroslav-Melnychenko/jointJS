@@ -60,3 +60,34 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+.link {
+    position: relative;
+    width: 5px;
+    height: 35px;
+    background-color: #1890ff;
+    border: solid 1px #333;
+    cursor: pointer;
+}
+
+.link:before {
+    content: "\A";
+    border-style: solid;
+    border-width: 10px 15px 10px 0;
+    border-color: transparent #333333 transparent transparent;
+    position: absolute;
+    transform: rotate(90deg) scale(1.1) translate(0px, 0px);
+    top: -8px;
+    left: -6px;
+}
+
+.link:after {
+    content: "\A";
+    border-style: solid;
+    border-width: 10px 15px 10px 0;
+    border-color: transparent #1890ff transparent transparent;
+    position: absolute;
+    transform: rotate(90deg);
+    top: -8px;
+    left: -6px;
+}

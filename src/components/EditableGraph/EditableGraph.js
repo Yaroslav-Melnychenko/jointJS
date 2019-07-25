@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Button, Spin, Icon } from 'antd';
 import { API_URL } from '../../api/constants';
-import { createRectangle, createEllipse } from '../../utils/createNewShapes';
+import { createRectangle, createEllipse, createLink } from '../../utils/createNewShapes';
 import './EditableGraph.css';
 
 const joint = require('jointjs');
@@ -28,6 +28,7 @@ class EditableGraph extends Component {
                 color: '#f3f3f3'
             },
             model: graph,
+            cellViewNamespace: namespace
         });
         this.setState({ isLoading: true });
         axios.get(`${API_URL}/graph-1`).then((responce) => {
@@ -54,7 +55,8 @@ class EditableGraph extends Component {
         }
 
         if (this.paper) {
-            const verticesTool = new joint.linkTools.Vertices();
+            this.paper.on('link:mouseenter', function(linkView) {
+                const verticesTool = new joint.linkTools.Vertices();
             const segmentsTool = new joint.linkTools.Segments();
             const sourceArrowheadTool = new joint.linkTools.SourceArrowhead();
             const targetArrowheadTool = new joint.linkTools.TargetArrowhead();
@@ -71,7 +73,6 @@ class EditableGraph extends Component {
                     boundaryTool, removeButton
                 ]
             });
-            this.paper.on('link:mouseenter', function(linkView) {
                 linkView.addTools(toolsView);
                 linkView.showTools();
                 // console.log(linkView)
@@ -94,6 +95,9 @@ class EditableGraph extends Component {
                     </li>
                     <li onClick={() => createEllipse(joint, graph, { width: 70, height: 70 }, { text: { text: 'Left' }, circle: { fill: '#2ECC71' } }, [150, 140])}>
                         <div className="circle" />
+                    </li>
+                    <li onClick={() => createLink(joint, graph, { x: 10, y: 10 }, { x: 100, y: 100 })}>
+                        <div className="link" />
                     </li>
                 </div>
                 <Button 
