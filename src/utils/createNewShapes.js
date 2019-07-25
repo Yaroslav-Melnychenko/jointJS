@@ -1,7 +1,15 @@
 export const createRectangle = (joint, graph, position, size, fillColor, textColor, text, fontSize) => {
     const rectangle = new joint.shapes.standard.Rectangle();
-    rectangle.position(...position);
-    rectangle.resize(...size);
+    if (position) {
+        rectangle.position(...position);
+    } else {
+        rectangle.position(20, 20);
+    }
+    if (size) {
+        rectangle.resize(...size);
+    } else {
+        rectangle.resize(100, 30);
+    }
     rectangle.attr({
         body: {
             fill: fillColor
@@ -52,6 +60,36 @@ export const createEllipse = (joint, graph, size, attrs, position) => {
 
 // New functions for implement JSON uploading
 
-export const createCustomLink = () => {
-    // Code
+export const configurePaperForLinks = (joint, paper) => {
+    if (paper) {
+        paper.on('link:mouseenter', function(linkView) {
+            const verticesTool = new joint.linkTools.Vertices();
+            const segmentsTool = new joint.linkTools.Segments();
+            const sourceArrowheadTool = new joint.linkTools.SourceArrowhead();
+            const targetArrowheadTool = new joint.linkTools.TargetArrowhead();
+            const sourceAnchorTool = new joint.linkTools.SourceAnchor();
+            const targetAnchorTool = new joint.linkTools.TargetAnchor();
+            const boundaryTool = new joint.linkTools.Boundary();
+            const removeButton = new joint.linkTools.Remove();
+
+            const toolsView = new joint.dia.ToolsView({
+                tools: [
+                    verticesTool, segmentsTool,
+                    sourceArrowheadTool, targetArrowheadTool,
+                    sourceAnchorTool, targetAnchorTool,
+                    boundaryTool, removeButton
+                ]
+            });
+
+            linkView.addTools(toolsView);
+            linkView.showTools();
+            // console.log(linkView)
+        });
+            
+        paper.on('link:mouseover', function(linkView) {
+            console.log(linkView)
+            // linkView.addTools(toolsView);
+            // linkView.hideTools();
+        });
+    }
 }
