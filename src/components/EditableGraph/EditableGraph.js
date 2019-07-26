@@ -36,6 +36,7 @@ class EditableGraph extends Component {
             const { data } = responce;
             this.setState({ ...data, isLoading: false });
         });
+        configurePaperForLinks(joint, this.paper, graph);
     }
 
     saveGraph = () => {
@@ -59,8 +60,6 @@ class EditableGraph extends Component {
         if (cells) {
             graph.fromJSON({ cells });
         }
-
-        configurePaperForLinks(joint, this.paper);
 
         return (
             <div className="editable-container">

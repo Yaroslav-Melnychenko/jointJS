@@ -60,7 +60,7 @@ export const createEllipse = (joint, graph, size, attrs, position) => {
 
 // New functions for implement JSON uploading
 
-export const configurePaperForLinks = (joint, paper) => {
+export const configurePaperForLinks = (joint, paper, graph) => {
     if (paper) {
         paper.on('link:mouseenter', function(linkView) {
             const verticesTool = new joint.linkTools.Vertices();
@@ -90,9 +90,9 @@ export const configurePaperForLinks = (joint, paper) => {
             linkView.addTools(toolsView);
         });
 
-        paper.on('element:mouseenter', function(element) {
-            // console.log('element', element)
-            // console.log(joint);
-        })
+        paper.on('cell:pointerdown', function(el) {
+            const { model: { id } } = el;
+            graph.getCell(id).remove();
+        });
     }
 }
