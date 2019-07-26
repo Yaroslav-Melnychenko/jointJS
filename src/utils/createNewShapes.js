@@ -60,7 +60,8 @@ export const createEllipse = (joint, graph, size, attrs, position) => {
 
 // New functions for implement JSON uploading
 
-export const configurePaperForLinks = (joint, paper, graph) => {
+export const configurePaperForShapes = (joint, paper, graph) => {
+    
     if (paper) {
         paper.on('link:mouseenter', function(linkView) {
             const verticesTool = new joint.linkTools.Vertices();
@@ -90,9 +91,46 @@ export const configurePaperForLinks = (joint, paper, graph) => {
             linkView.addTools(toolsView);
         });
 
-        paper.on('cell:pointerdown', function(el) {
-            const { model: { id } } = el;
-            graph.getCell(id).remove();
+
+        /* === */
+
+        paper.on('cell:mouseenter', function(el) {
+            const { model } = el;
+            if (model instanceof joint.dia.Link) return;
+            model.attr({
+                button: {
+                    cursor: 'pointer',
+                    ref: 'buttonLabel',
+                    refWidth: '150%',
+                    refHeight: '150%',
+                    refX: '-25%',
+                    refY: '-25%'
+                },
+                buttonLabel: {
+                    pointerEvents: 'none',
+                    refX: '100%',
+                    refY: 0,
+                    textAnchor: 'middle',
+                    textVerticalAnchor: 'middle'
+                }
+            });
+            // model.markup();
+            console.log(model);
         });
+
+
+
+        // Here will be click to remoove
+        // paper.on('cell:pointerdown', function(el) {
+        //     const { model: { id } } = el;
+        //     graph.getCell(id).remove();
+        // });
+
+        // Here will be resize function
+        // paper.on('cell:pointerup', function(cellView) {
+        //     if (cellView.model instanceof joint.dia.Link) return;
+        //     var freeTransform = new joint.ui.FreeTransform({ cellView: cellView });
+        //     freeTransform.render();
+        // });
     }
 }

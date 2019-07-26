@@ -4,13 +4,12 @@ import axios from 'axios';
 import { Button, Spin, Icon } from 'antd';
 import * as svg from 'save-svg-as-png';
 import { API_URL } from '../../api/constants';
-import { createRectangle, createEllipse, createLink, configurePaperForLinks, createRhombus } from '../../utils/createNewShapes';
+import { createRectangle, createEllipse, createLink, configurePaperForShapes, createRhombus } from '../../utils/createNewShapes';
 import './EditableGraph.css';
 
 const joint = require('jointjs');
 const namespace = joint.shapes;
 const graph = new joint.dia.Graph({}, { cellNamespace: namespace });
-
 
 class EditableGraph extends Component {
 
@@ -36,7 +35,7 @@ class EditableGraph extends Component {
             const { data } = responce;
             this.setState({ ...data, isLoading: false });
         });
-        configurePaperForLinks(joint, this.paper, graph);
+        configurePaperForShapes(joint, this.paper, graph);
     }
 
     saveGraph = () => {
